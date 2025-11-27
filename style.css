@@ -1,0 +1,96 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Por defecto (escritorio grande): tarjetas automáticas */
+.grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/* 📱 Móviles: 2 columnas */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 📲 Tablets: 4 columnas */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  border-radius: 12px;
+  padding: 15px;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.card:hover { transform: translateY(-5px); }
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.card p { margin: 5px 0; font-size: 14px; }
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.type {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 2px solid #fff;
+}
+
+/* 🎨 Colores por tipo */
+.type.Planta { background: #78C850; color:#fff; }
+.type.Fuego { background: #F08030; color:#fff; }
+.type.Agua { background: #6890F0; color:#fff; }
+.type.Eléctrico { background: #F8D030; color:#000; }
+.type.Normal { background: #A8A878; color:#fff; }
+.type.Bicho { background: #A8B820; color:#fff; }
+.type.Veneno { background: #A040A0; color:#fff; }
+.type.Volador { background: #A890F0; color:#fff; }
+.type.Tierra { background: #E0C068; color:#000; }
+.type.Hada { background: #EE99AC; color:#000; }
+
+/* 🎨 Colores de fondo de tarjeta según tipo primario */
+.card.Planta { background: #78C850; }
+.card.Fuego { background: #F08030; }
+.card.Agua { background: #6890F0; }
+.card.Eléctrico { background: #F8D030; color:#000; }
+.card.Normal { background: #A8A878; }
+.card.Bicho { background: #A8B820; }
+.card.Veneno { background: #A040A0; }
+.card.Volador { background: #A890F0; }
+.card.Tierra { background: #E0C068; color:#000; }
+.card.Hada { background: #EE99AC; color:#000; }
+
+.loading { text-align:center; padding:16px; color:#555; }
+#loadMore { display:block; margin:20px auto; padding:10px 20px; }

@@ -1,53 +1,36 @@
 <?php
-$json = file_get_contents('pokemon.json');
-$data = json_decode($json, true);
-$primeros = array_slice($data['pokemon'], 0, 10);
+// Si la petición viene con ?ajax=1, devolvemos solo un bloque JSON
+if (isset($_GET['ajax'])) {
+    header('Content-Type: application/json; charset=utf-8');
+
+    $jsonPath = __DIR__ . '/pokemon.json';
+    $raw = file_get_contents($jsonPath);
+    $data = json_decode($raw, true);
+
+    $porPagina = 10;
+    $offset = isset($_GET['offset']) ? max(0, (int)$_GET['offset']) : 0;
+
+    $bloque = array_slice($data['pokemon'], $offset, $porPagina);
+    echo json_encode($bloque, JSON_UNESCAPED_UNICODE);
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Primeros Pokémon</title>
-
-    <!-- Bootstrap CSS CDN -->
-    <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet"
-    >
-
-    <!-- Tus estilos -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>Pokédex Scroll Infinito con Tarjetas</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light">
+<body>
+  <h1>Pokédex</h1>
 
-<div class="container mt-4">
-    <h1 class="mb-4">Primeros 10 Pokémon</h1>
+  <div id="grid" class="grid"></div>
 
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Tipo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($primeros as $poke): ?>
-                <tr>
-                    <td><?= $poke['id'] ?></td>
-                    <td><?= htmlspecialchars($poke['nombre']) ?></td>
-                    <td><?= implode(", ", $poke['tipo']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+  <div id="estado" class="loading">Cargando...</div>
+  <button id="loadMore">Cargar más</button>
 
-<!-- Bootstrap JS CDN -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Tus scripts -->
-<script src="js/main.js"></script>
-
+  <!-- JS separado -->
+  <script src="main.js"></script>
 </body>
 </html>
