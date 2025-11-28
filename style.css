@@ -14,21 +14,17 @@ h1 {
   display: grid;
   gap: 20px;
   justify-content: center;
-}
-
-/* Por defecto (escritorio grande): tarjetas automáticas */
-.grid {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-/* 📱 Móviles: 2 columnas */
+/* 📱 Mobile: 2 columns */
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* 📲 Tablets: 4 columnas */
+/* 📲 Tablet: 4 columns */
 @media (min-width: 601px) and (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
@@ -65,32 +61,71 @@ h1 {
   border-radius: 6px;
   font-size: 12px;
   font-weight: bold;
-  border: 2px solid #fff;
+  border: 2px solid #fff; /* border to separate from card background */
 }
 
-/* 🎨 Colores por tipo */
-.type.Planta { background: #78C850; color:#fff; }
-.type.Fuego { background: #F08030; color:#fff; }
-.type.Agua { background: #6890F0; color:#fff; }
-.type.Eléctrico { background: #F8D030; color:#000; }
-.type.Normal { background: #A8A878; color:#fff; }
-.type.Bicho { background: #A8B820; color:#fff; }
-.type.Veneno { background: #A040A0; color:#fff; }
-.type.Volador { background: #A890F0; color:#fff; }
-.type.Tierra { background: #E0C068; color:#000; }
-.type.Hada { background: #EE99AC; color:#000; }
+/* 🎨 Colors by type (English names from PokeAPI) */
+.type.grass { background: #78C850; color:#fff; }
+.type.fire { background: #F08030; color:#fff; }
+.type.water { background: #6890F0; color:#fff; }
+.type.electric { background: #F8D030; color:#000; }
+.type.normal { background: #A8A878; color:#fff; }
+.type.bug { background: #A8B820; color:#fff; }
+.type.poison { background: #A040A0; color:#fff; }
+.type.flying { background: #A890F0; color:#fff; }
+.type.ground { background: #E0C068; color:#000; }
+.type.fairy { background: #EE99AC; color:#000; }
+.type.psychic { background: #F85888; color:#fff; }
+.type.rock { background: #B8A038; color:#fff; }
+.type.ghost { background: #705898; color:#fff; }
+.type.ice { background: #98D8D8; color:#000; }
+.type.dragon { background: #7038F8; color:#fff; }
+.type.dark { background: #705848; color:#fff; }
+.type.steel { background: #B8B8D0; color:#000; }
+.type.fighting { background: #C03028; color:#fff; }
 
-/* 🎨 Colores de fondo de tarjeta según tipo primario */
-.card.Planta { background: #78C850; }
-.card.Fuego { background: #F08030; }
-.card.Agua { background: #6890F0; }
-.card.Eléctrico { background: #F8D030; color:#000; }
-.card.Normal { background: #A8A878; }
-.card.Bicho { background: #A8B820; }
-.card.Veneno { background: #A040A0; }
-.card.Volador { background: #A890F0; }
-.card.Tierra { background: #E0C068; color:#000; }
-.card.Hada { background: #EE99AC; color:#000; }
+/* 🎨 Card background by primary type */
+.card.grass { background: #78C850; }
+.card.fire { background: #F08030; }
+.card.water { background: #6890F0; }
+.card.electric { background: #F8D030; color:#000; }
+.card.normal { background: #A8A878; }
+.card.bug { background: #A8B820; }
+.card.poison { background: #A040A0; }
+.card.flying { background: #A890F0; }
+.card.ground { background: #E0C068; color:#000; }
+.card.fairy { background: #EE99AC; color:#000; }
+.card.psychic { background: #F85888; }
+.card.rock { background: #B8A038; }
+.card.ghost { background: #705898; }
+.card.ice { background: #98D8D8; color:#000; }
+.card.dragon { background: #7038F8; }
+.card.dark { background: #705848; }
+.card.steel { background: #B8B8D0; color:#000; }
+.card.fighting { background: #C03028; }
 
 .loading { text-align:center; padding:16px; color:#555; }
 #loadMore { display:block; margin:20px auto; padding:10px 20px; }
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
